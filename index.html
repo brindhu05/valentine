@@ -20,12 +20,17 @@ font-family:'Pacifico',cursive;
 
 body{
 height:100vh;
-background:linear-gradient(135deg,#ff4e8d,#ff758c);
+/* BOYS MODE */
+background:linear-gradient(135deg,#87CEEB,#FFDAB9);
+
+/* GIRLS MODE */
+/* background:linear-gradient(135deg,#ff4e8d,#ff758c); */
 display:flex;
 justify-content:center;
 align-items:center;
 overflow:hidden;
-color:white;
+color:#000;
+font-weight:200;
 }
 
 .container{
@@ -34,10 +39,11 @@ padding:35px;
 border-radius:25px;
 text-align:center;
 backdrop-filter:blur(10px);
-box-shadow:0 0 40px rgba(0,0,0,0.3);
+box-shadow:0 0 50px rgba(135,206,235,0.6);
 width:90%;
 max-width:400px;
 animation:pop 1s ease;
+border:1px solid rgba(255,255,255,0.3);
 }
 
 h1{font-size:2.5rem;}
@@ -50,6 +56,7 @@ border-radius:50%;
 border:4px solid white;
 object-fit:cover;
 margin:15px 0;
+animation:bounce 2s infinite;
 }
 
 button{
@@ -57,21 +64,18 @@ padding:12px 25px;
 border:none;
 border-radius:30px;
 background:white;
-color:#ff4e8d;
+color:#2196F3;
 font-size:1rem;
 margin:8px;
 cursor:pointer;
 }
 
-button:hover{
-background:#ffe6ec;
-}
-
 /* Floating hearts */
 .heart{
 position:absolute;
-animation:float 6s linear infinite;
+animation:float 8s linear infinite;
 }
+
 
 @keyframes float{
 0%{transform:translateY(100vh);}
@@ -108,13 +112,23 @@ to{width:100%}
 position:absolute;
 }
 
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
+}
+
+button:first-child{
+animation:pulse 1.5s infinite;
+}
+
 </style>
 </head>
 
 <body>
 
 <audio id="music" loop>
-<source src="song.mp3" type="audio/mpeg">
+<source src="song.mp3.mp4" type="audio/mpeg">
 </audio>
 
 <div class="container">
@@ -160,8 +174,13 @@ setTimeout(()=>h.remove(),6000);
 /* Love Button */
 function love(){
 document.getElementById("music").play();
-alert("I Love You Forever Mama 💘🥰");
+document.querySelector(".container").innerHTML = `
+<h1>Yayyy 😍</h1>
+<h2>I Love You Forever Mama 💘</h2>
+<h2>💙💋💖</h2>
+`;
 }
+
 
 /* No Button Move */
 const noBtn=document.getElementById("noBtn");
