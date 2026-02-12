@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Valentine</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+h1,h2{
+font-family:'Pacifico',cursive;
+}
+
+body{
+height:100vh;
+background:linear-gradient(135deg,#ff4e8d,#ff758c);
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+color:white;
+}
+
+.container{
+background:rgba(255,255,255,0.15);
+padding:35px;
+border-radius:25px;
+text-align:center;
+backdrop-filter:blur(10px);
+box-shadow:0 0 40px rgba(0,0,0,0.3);
+width:90%;
+max-width:400px;
+animation:pop 1s ease;
+}
+
+h1{font-size:2.5rem;}
+h2{margin:15px 0;}
+
+img{
+width:170px;
+height:170px;
+border-radius:50%;
+border:4px solid white;
+object-fit:cover;
+margin:15px 0;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4e8d;
+font-size:1rem;
+margin:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#ffe6ec;
+}
+
+/* Floating hearts */
+.heart{
+position:absolute;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);}
+100%{transform:translateY(-10vh);}
+}
+
+/* Typewriter */
+.type{
+border-right:2px solid white;
+white-space:nowrap;
+overflow:hidden;
+animation:typing 4s steps(30),blink .7s infinite;
+}
+
+@keyframes typing{
+from{width:0}
+to{width:100%}
+}
+
+@keyframes blink{
+50%{border-color:transparent;}
+}
+
+@keyframes pop{
+0%{transform:scale(0);}
+100%{transform:scale(1);}
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-6px);}
+}
+#noBtn{
+position:absolute;
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+<h1 id="from">Brindhu 😚</h1>
+
+<h2 class="type" id="msg">Will You Be My Valentine? 💖</h2>
+
+<h1 id="to">Murugavel 💋</h1>
+
+<img src="Mama💋Papa.jpeg" alt="Love Photo">
+
+<br><br>
+
+<button onclick="love()">YES ❤️</button>
+<button id="noBtn">No 💔</button>
+
+</div>
+
+<script>
+
+/* URL Params */
+let p=new URLSearchParams(window.location.search);
+let from=p.get("from")||"Brindhu 😚";
+let to=p.get("to")||"Murugavel 💋";
+let msg=p.get("msg")||"Will You Be My Valentine? 💖";
+
+document.getElementById("from").innerText=from;
+document.getElementById("to").innerText=to;
+document.getElementById("msg").innerText=msg;
+
+/* Auto Hearts */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML=Math.random()>0.5?"❤️":"🌹";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(Math.random()*25+15)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},300);
+
+/* Love Button */
+function love(){
+document.getElementById("music").play();
+alert("I Love You Forever Mama 💘🥰");
+}
+
+/* No Button Move */
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",()=>{
+const x=Math.random()*300-150;
+const y=Math.random()*300-150;
+noBtn.style.transform=`translate(${x}px,${y}px)`;
+});
+
+</script>
+
+</body>
+</html>
